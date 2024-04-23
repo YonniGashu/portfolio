@@ -1,13 +1,26 @@
 import "./App.css";
 import React from "react";
 import { useDisclosure } from "@mantine/hooks";
-import { Button, Flex, AppShell, Burger, Text } from "@mantine/core";
-import { IconMoon } from "@tabler/icons-react";
+import {
+  Button,
+  Flex,
+  AppShell,
+  Burger,
+  Text,
+  useComputedColorScheme,
+  useMantineColorScheme,
+} from "@mantine/core";
+import { IconMoon, IconSun } from "@tabler/icons-react";
 import ButtonComponent from "./Components/Buttons";
 import TextComponent from "./Components/Text";
 
 function App() {
+  const computedColorScheme = useComputedColorScheme("light");
+  const { setColorScheme } = useMantineColorScheme();
   const [opened, { toggle }] = useDisclosure();
+  const toggleColorScheme = () => {
+    setColorScheme(computedColorScheme === "dark" ? "light" : "dark");
+  };
   const [currentComponent, setCurrentComponent] =
     React.useState<string>("component1");
 
@@ -57,8 +70,10 @@ function App() {
                 to: "rgba(190,0,180)",
                 deg: 60,
               }}
+              onClick={toggleColorScheme}
             >
-              <IconMoon />
+              {computedColorScheme === "dark" && <IconSun />}
+              {computedColorScheme === "light" && <IconMoon />}
             </Button>
           </Flex>
         </AppShell.Header>
