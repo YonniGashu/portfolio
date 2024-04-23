@@ -1,16 +1,8 @@
 import "./App.css";
 import React from "react";
 import { useDisclosure } from "@mantine/hooks";
-import {
-  Button,
-  Flex,
-  AppShell,
-  Burger,
-  Paper,
-  AppShellHeader,
-  Text,
-} from "@mantine/core";
-import { IconMoon, IconSun } from "@tabler/icons-react";
+import { Button, Flex, AppShell, Burger, Text } from "@mantine/core";
+import { IconMoon } from "@tabler/icons-react";
 import ButtonComponent from "./Components/Buttons";
 import TextComponent from "./Components/Text";
 

@@ -19,9 +19,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 8.15.3
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
