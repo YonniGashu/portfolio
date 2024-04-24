@@ -72,8 +72,7 @@ function App() {
               }}
               onClick={toggleColorScheme}
             >
-              {computedColorScheme === "dark" && <IconSun />}
-              {computedColorScheme === "light" && <IconMoon />}
+              {computedColorScheme === "dark" ? <IconSun /> : <IconMoon />}
             </Button>
           </Flex>
         </AppShell.Header>
