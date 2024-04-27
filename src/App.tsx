@@ -1,120 +1,52 @@
 import "./App.css";
-import React from "react";
-import { useDisclosure } from "@mantine/hooks";
+// import React from "react";
+// import { useDisclosure } from "@mantine/hooks";
 import {
   Button,
   Flex,
   AppShell,
-  Burger,
   Text,
   useComputedColorScheme,
   useMantineColorScheme,
 } from "@mantine/core";
 import { IconMoon, IconSun } from "@tabler/icons-react";
-import ButtonComponent from "./Components/Buttons";
-import TextComponent from "./Components/Text";
+import Top from "./components/Top/Top";
 
 function App() {
   const computedColorScheme = useComputedColorScheme("light");
   const { setColorScheme } = useMantineColorScheme();
-  const [opened, { toggle }] = useDisclosure();
   const toggleColorScheme = () => {
     setColorScheme(computedColorScheme === "dark" ? "light" : "dark");
   };
-  const [currentComponent, setCurrentComponent] =
-    React.useState<string>("component1");
 
   return (
     <div className="App">
-      <AppShell
-        header={{ height: 60 }}
-        navbar={{
-          width: 300,
-          breakpoint: "md",
-          collapsed: { mobile: !opened },
-        }}
-        padding="md"
-      >
+      <AppShell header={{ height: 60 }} padding="md">
         <AppShell.Header>
           <Flex
             justify="space-between"
             align="center"
             style={{ padding: "5px 20px" }}
           >
-            <Burger
-              opened={opened}
-              onClick={toggle}
-              hiddenFrom="md"
-              size="sm"
-            />
             <Text
               c="rgba(250,250,250)"
               fz={30}
               fw={700}
-              tt={"uppercase"}
               size="xl"
               variant="gradient"
-              gradient={{
-                from: "violet",
-                to: "rgba(190,0,180)",
-                deg: 60,
-              }}
             >
               Yonathan G.
             </Text>
             <Button
               c="rgba(250,250,250)"
               variant="gradient"
-              gradient={{
-                from: "violet",
-                to: "rgba(190,0,180)",
-                deg: 60,
-              }}
               onClick={toggleColorScheme}
             >
-              {computedColorScheme === "dark" && <IconSun />}
-              {computedColorScheme === "light" && <IconMoon />}
+              {computedColorScheme === "dark" ? <IconSun /> : <IconMoon />}
             </Button>
           </Flex>
         </AppShell.Header>
-        <AppShell.Navbar p="md" style={{ gap: "10px" }}>
-          <Button
-            onClick={() => setCurrentComponent("component1")}
-            style={{ margin: "5px" }}
-            c="rgba(250,250,250)"
-            variant="gradient"
-            gradient={{
-              from: "violet",
-              to: "rgba(190,0,180)",
-              deg: 60,
-            }}
-          >
-            Button Component
-          </Button>
-          <Button
-            onClick={() => setCurrentComponent("component2")}
-            style={{ margin: "5px" }}
-            c="rgba(250,250,250)"
-            variant="gradient"
-            gradient={{
-              from: "violet",
-              to: "rgba(190,0,180)",
-              deg: 60,
-            }}
-          >
-            Text Component
-          </Button>
-        </AppShell.Navbar>
-        <AppShell.Main>
-          {currentComponent === "component1" ? (
-            <ButtonComponent />
-          ) : (
-            <TextComponent />
-          )}
-        </AppShell.Main>
-        <AppShell.Footer zIndex={opened ? "auto" : 101}>
-          Made by Yonathan Gashu
-        </AppShell.Footer>
+        <Top></Top>
       </AppShell>
     </div>
   );
